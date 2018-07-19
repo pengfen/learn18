@@ -1,3 +1,7 @@
+tp         TP框架
+yii        yii框架
+wordpress
+
 windows apache配置虚拟主机
 
 C:\Windows\System32\drivers\etc\hosts
