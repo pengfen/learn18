@@ -1,11 +1,9 @@
-yii-advanced-app-2.0.7-2.tar   yii 最新版本包
-yii-component.zip              yii 组件包
-yii-component-install.html     yii 组件安装
-yii-basic.zip                  yii 基础版
-
 Yii 框架
 ====================================================================
+
 yii-intro.html   Yii 介绍
+yii-init.html    Yii 初始化
+yii-host.html    Yii 配置虚拟主机
 yii-crud.html    Yii 增删改查
 yii-part.html    Yii 片段
 
