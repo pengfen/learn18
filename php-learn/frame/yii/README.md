@@ -4,6 +4,9 @@ Yii 框架
 yii-intro.html   Yii 介绍
 yii-init.html    Yii 初始化
 yii-host.html    Yii 配置虚拟主机
+
+yii-flow.html    Yii 流程
+yii-data.html    Yii 配置数据库及相关流程
 yii-crud.html    Yii 增删改查
 yii-part.html    Yii 片段
 
