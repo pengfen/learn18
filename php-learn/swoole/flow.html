@@ -1,0 +1,12 @@
+客户端                                        服务端
+$client = new swoole_client(SWOOLE_SOCK_TCP)  $serv = new swoole_server("127.0.0.1", 9501);
+$client=>connect()                            $serv->on("connect", function() {});
+$client->send()                               $serv->on("receive", function() {
+$client->recv()                                   $serv->send();
+                                              });
+$client->close()                              $serv->on("close", function() {});
+                                              $serv->start();
+
+启动服务器 php tcp_server.php
+启动客户端测试 php tcp_client.php
+接收数据后进行逻辑处理
