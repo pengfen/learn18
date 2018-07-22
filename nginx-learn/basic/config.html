@@ -1,0 +1,56 @@
+nginx默认配置语法
+
+http {
+	...
+
+	server {
+	    listen 80;
+	    server_name localhost;
+
+	    location / {
+	        root /usr/share/nginx/html;
+	        index index.html index.htm;
+	    }
+
+	    error_page 500 502 503 504 /50x.html;
+
+	    location = /50x.html {
+	        root /usr/share/nginx/html;
+	    }
+    }
+
+    server {
+        ...
+    }
+}
+user 设置nginx服务的系统使用用户
+worker_processes 工作进程数
+error_log nginx的错误日志
+pid nginx服务启动的pid
+
+events worker_connections 每个进程允许最大连接数
+       use 工作进程数
+
+error_page 404 配置404跳转到指定页面
+
+HTTP请求
+request 包括请求行 请求头部 请求数据
+response 包括状态行 消息报头 响应正文
+
+
+nginx日志类型 access.log error.log
+log_format
+syntax log_format name[escape=default|json] string ...
+default log_format combined
+context http
+
+log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+                '$status $body_bytes_sent "$http_referer" '
+                '"$http_user_agent" "$http_x_forwarded_for" '
+
+access_log /var/log/nginx/access.log main;
+
+nginx 变量
+http请求变量 - arg_PARAMETER http_HEADER sent_http_HEADER
+内置变量 nginx内置的
+自定义变量 - 自己定义

@@ -1,0 +1,17 @@
+环境调试确认
+
+1. 确认系统网络
+2. 确认yum可用
+3. 确认关闭iptables规则
+4. 确认信用selinux
+
+两项安装
+yum -y install gcc gcc-c++ autoconf pcre pcre-devel make automake 安装系统基础库
+yum -y install wget httpd-tools vim
+
+apt-get -y install gcc autoconf make automake 安装系统基础库
+apt-get -y install wget vim
+
+一次初始化
+cd  /opt
+mkdir app downlad logs work backup

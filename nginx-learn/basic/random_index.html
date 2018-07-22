@@ -1,0 +1,16 @@
+random_index 模块
+
+--with-http_random_index_module 目录中选择一个随机主页
+
+random_index_module
+syntax random_index on|off;
+default random_index off;
+context location
+
+location / {
+	root /var/www/res;
+	random_index on;
+	#index index.html index.htm;
+}
+sudo nginx -tc /etc/nginx/conf.d/default.conf
+sudo service nginx restart
