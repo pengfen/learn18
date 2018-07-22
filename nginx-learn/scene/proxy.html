@@ -1,0 +1,62 @@
+代理服务
+
+代理 代为办理
+
+代理区别 区别在于代理的对象不一样
+正向代理代理的对象是客户端
+反向代理代理的对象是服务端
+
+proxy_pass URL;
+default
+context location, if in location, limit_except
+
+text_proxy.html
+<h1>welcome to ...</h1>
+
+location ~ /test_proxy.html {
+	proxy_pass http://127.0.0.1:8080;
+}
+
+
+正向代理
+location / {
+	if ($http_x_forwarded_for !~* "^116\.62\.183\.228") {
+		return 403;
+	}
+}
+
+IP (116...)
+location / {
+	proxy_pass http://$http_host$request_uri;
+}
+
+缓冲区
+syntax proxy_buffering on | off;
+default proxy_buffering on;
+context http, server, location
+
+syntax proxy_redirect default;
+proxy_redirect off; proxy_redirect redirect replacement;
+default proxy_redirect default;
+context http, server, location
+
+proxy_read_timeout, proxy_send_timeout
+
+
+location / {
+	proxy_pass http://127.0.0.1:8080;
+	proxy_redirect default;
+
+	proxy_set_header Host $http_host;
+	proxy_set_header X-Real-IP $remote_addr;
+
+	proxy_connect_timeout 30;
+	proxy_send_timeout 60;
+	proxy_read_timeout 60;
+
+	proxy_buffer_size 32k;
+	proxy_buffering on;
+	proxy_buffers 4 128k;
+	proxy_busy_buffers_size 256k;
+	proxy_max_temp_file_size 256k;
+}
