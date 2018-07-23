@@ -33,3 +33,9 @@ if (!preg_match('/^1\d{10}$/i', $user['mobile'])) {
 }
 
 echo '用户信息验证成功';
+
+// 替换字符串中的非字母
+function preg_title($post_title) {
+    $title = str_replace(" ", "-", $post_title); // 空格替换为-
+    return  preg_replace("/[^a-zA-Z_-]/", "", $title); // 非字母全替换为空
+}
