@@ -1,15 +1,15 @@
 <?php
 
 //创建websocket服务器对象，监听0.0.0.0:9502端口
-$ws = new swoole_websocket_server("0.0.0.0", 9502);
+$ws = new swoole_websocket_server("127.0.0.1", 9502);
 
-$ws->set(
-    [
-        'enable_static_handler' => true,
-        'document_root' => "/var/www/wordpress/swoole",
-        'websocket_subprotocol' => 'chat',
-    ]
-);
+// $ws->set(
+//     [
+//         'enable_static_handler' => true,
+//         'document_root' => "/var/www/wordpress/swoole",
+//         'websocket_subprotocol' => 'chat',
+//     ]
+// );
 //监听WebSocket连接打开事件
 $ws->on('open', function ($ws, $request) {
     var_dump($request->fd, $request->get, $request->server);
@@ -28,3 +28,12 @@ $ws->on('close', function ($ws, $fd) {
 });
 
 $ws->start();
+
+
+proxy_set_header HOSt $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header x-Forwarded-For $remote_addr;
+
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection 'upgrade';

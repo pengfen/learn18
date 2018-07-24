@@ -60,3 +60,7 @@ location / {
 	proxy_busy_buffers_size 256k;
 	proxy_max_temp_file_size 256k;
 }
+
+sudo nginx -tc /etc/nginx/conf.d/default.conf 检测语法是否合法
+sudo nginx -s reload #服务器
+sudo service nginx restart

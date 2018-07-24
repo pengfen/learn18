@@ -1,6 +1,6 @@
 <?php
 
-$http = new swoole_http_server("0.0.0.0", 9501);
+$http = new swoole_http_server("127.0.0.1", 9501);
 
 //$http->set(
 //    [
@@ -16,3 +16,14 @@ $http->on("request", function ($request, $response) {
 });
 
 $http->start();
+
+// 注意服务器端口不对外开放
+// 一使用iptables规则对外开放9501端口
+
+// 二使用代理
+// php web_server.php
+// cd /etc/nginx/cond.f
+// sudo vim dev.res.com
+// location /websocket { proxy_pass http:127.0.0.1:9501;}
+// sudo nginx -r reload
+// http://dev.res.com/websocket (相当于dev.res.com:9501)
