@@ -1,3 +1,21 @@
+redis 及 redis扩展安装
+sudo opt-get install -y redis-server
+
+git clone https://github.com/phpredis/phpredis.git
+cd phpredis
+phpize
+./configure
+make
+sudo make install
+php -i | grep php.ini
+cd /etc/php/7.0/cli
+sudo vim php.ini
+extension=redis.so
+sudo nginx -s reload
+php -m
+
+
+
 http://redis.io/download 下载 redis相关包
 
 linux上创建redis

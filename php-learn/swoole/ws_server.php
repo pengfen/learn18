@@ -28,12 +28,3 @@ $ws->on('close', function ($ws, $fd) {
 });
 
 $ws->start();
-
-
-proxy_set_header HOSt $host;
-proxy_set_header X-Real-IP $remote_addr;
-proxy_set_header x-Forwarded-For $remote_addr;
-
-proxy_http_version 1.1;
-proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection 'upgrade';
