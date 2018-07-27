@@ -1,7 +1,7 @@
 <?php
 
 $redis = new redis();
-$redis->connect("192.168.233.130", 6379);
+$redis->connect("127.0.0.1", 6379);
 $redis->select(3);
 
 // 为一个key添加一个值 如果这个值已经在这个key中 则返回false;

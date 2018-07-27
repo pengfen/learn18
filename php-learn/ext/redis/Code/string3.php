@@ -1,7 +1,7 @@
 <?php
 
 $redis = new redis(); // 实例化redis
-$redis->connect('192.168.233.130', 6379); // 创建redis连接
+$redis->connect('127.0.0.1', 6379); // 创建redis连接
 $redis->select(1); // 选择一号数据库
 
 $redis->set('add', 5);

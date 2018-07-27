@@ -1,11 +1,11 @@
 <?php
 
 $redis = new redis();
-$redis->connect('192.168.233.130', 6379);
-$redis->select(2);
+$redis->connect('127.0.0.1', 6379);
+$redis->select(2); // select 2
 
 // 获取test列表的长度
-$len = $redis->lsize('test');
+$len = $redis->lsize('test'); 
 for ($i = 0; $i < $len; $i ++) {
 	// 返回指定键存储在列表中指定的元素 0第一个元素 ...
 	echo "第{$i}个元素的值是 : ".$redis->lget("test", $i);
