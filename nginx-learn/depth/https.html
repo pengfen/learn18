@@ -54,5 +54,11 @@ server {
 	ssl on;
 	ssl_certificate /etc/nginx/ssl_key/im.crt;
 	ssl_certificate_key /etc/nginx/ssl_key/im.key
-	
+
 }
+
+场景 配置苹果要求的证书
+服务器所有的连接使用TLS1.2以上版本(openssl 1.0.2)
+HTTPS证书必须使用SHA256以上哈希算法签名
+HTTPS证书必须使用RSA 2048位或ECC 256位以上公钥算法
+使用前向加密技术

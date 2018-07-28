@@ -1,0 +1,43 @@
+基于nginx架构的安全
+
+1. 常见的恶意行为
+2. 常见的应用层攻击手段
+3. nginx防攻击策略
+4. 场景 nginx+LUA的安全waf防火墙
+
+常见的恶意行为
+爬虫行为和恶意抓取 资源盗用
+基础防盗链功能 目的不让恶意用户能轻易爬取网站对外数据
+secure_link_module 对数据安全性提高加密验证和失效性 适合如核心重要重要数据
+access_module 对后台 部分用户服务的数据提供IP防控
+
+常见的攻击手段
+后台密码撞库 通过猜测密码字典不断对后台系统登录性尝试 获取后台登录密码
+方法一 后台登录密码复杂度
+方法二 access_module 对后台提供IP防控
+方法三 预警机制
+
+文件上传漏洞 利用这些可以上传的接口将恶意代码植入到服务器中 再通过url去访问以执行代码
+http://www.res.com/upload/1.jpg/1.php
+nginx将1.jpg作为php代码执行
+location ^~ /upload {
+	root /opt/app/images;
+	if ($request_filename ~* (.*)\.php) {
+		#set $php_url $1;
+		return 403;
+	}
+}
+
+
+sql注入 利用未过滤/未审核用户输入的攻击方法 让应用运行本不应该运行的sql代码
+sql注入场景
+
+用户 --- http --->  nginx LUA  --- fastcgi --->  PHP  --- SQL --->  mariadb
+
+安装环境
+yum install mariadb-server mariadb
+yum install php php-fmp php-mysql
+
+建立表格 插入测试数据
+create table users(id int(11), username varchar(64), password varchar(64), email varchar(64));
+insert into users(id, username, password, email) values(1, 'ricky', md5('123'), 'caopeng8787@163.com')
