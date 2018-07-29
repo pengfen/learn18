@@ -17,6 +17,9 @@ const(a=iota
 b  //1 
 c  //2)
 
+const.go
+
+
 变量
 1. 语法 var identifier type
 var a int
@@ -25,9 +28,20 @@ var c bool
 var d int = 8
 var e string = "welcome"
 
+Var (
+a int // 默认为0
+b string // 默认为""
+c bool // 默认为false
+d int = 8
+e string = "welcome"
+)
+
+var.go
+
 值类型和引用类型
 1. 值类型 变量直接存储值 内存通常在栈中分配
 2. 引用类型 变量存储的是一个地址 这个地址存储最终的值 内存通常在堆上分配 通过GC回收
 
 值类型 基本数据类型int float bool string以及数组和struct
 引用类型 指针 slice map clean 等都是引用类型
+
