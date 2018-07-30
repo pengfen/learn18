@@ -10,3 +10,4 @@ delete.py    删除消息
 username.py  匹配用户名并写入文件
 util.py      工具类
 send.py      给用户发消息
+wallet.py    匹配钱包地址 (回调接口 reward_wallet.php)
