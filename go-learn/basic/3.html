@@ -1,0 +1,245 @@
+1. strings和strconv使用
+2. Go中的时间和日期类型
+3. 流程控制 
+4. 函数详解
+
+1. 判断101~200之间有多少素数 并输出所有素数
+定义 为在大于1的自然数中 除了1和它本身以外不再有其他函数的数称为素数
+2. 打印出100-999中所有的"水仙花数" 所谓"水仙花数"是指一个三位数 其各位数字立方和等于该数本身 153 = 1的立方 + 5的立方 + 3的立方
+3. 对于一个数n 求n的阶乘之和 1! + 2! + 3! + ... + n!
+
+strings和strconv使用
+1. strings.HasPrefix(s string, prefix string) bool 判断字符串s是否以prefix开头 
+练习1 判断一个url是否以http://开头 如果不是 则加上http://
+2. strings.HasSuffix(s string, suffix string) bool 判断字符串s是否以suffix结尾
+练习2 判断一个路径是否以"/"结尾 如果不是 则加上/
+3. strings.Index(s string, str string) int 判断str在s中首次出现的位置 如果没有出现 则返回-1
+4. strings.lastIndex(s string, str string) int 判断str在s中最后出现的位置 如果没有出现 则返回-1
+练习3 写一个函数返回一个字符串在另一个字符串的首次出现和最后出现位置
+func StrIndex(str string, substr string)(int, int){}
+5. strings.Replace(str string, old string, new string, n int) 字符串替换
+6. strings.Count(str string, substr string) int 字符串计数
+7. strings.Repeat(str string, count int) string 重复count次str
+8 strings.ToLower(str string) string 转为小写
+9. strings.ToUpper(str string) string 转为大写
+
+练习4 写一个函数分别演示Replace Count Repeat toLower ToUpper的用法
+5. strings.TrimSpace(str string)：去掉字符串首尾空白字符
+strings.Trim(str string, cut string)：去掉字符串首尾cut字符
+strings.TrimLeft(str string, cut string)：去掉字符串首cut字符
+strings.TrimRight(str string, cut string)：去掉字符串首cut字符
+6. strings.Field(str string)：返回str空格分隔的所有子串的slice
+strings.Split(str string, split string)：返回str split分隔的所有子串的slice
+7. strings.Join(s1 []string, sep string)：用sep把s1中的所有元素链接起来
+练习5：写一个函数分别演示TrimSpace、Trim、TrimLeft、TrimRight、Field
+、Split、以及Join的用法
+8. strings.Itoa(i int)：把一个整数i转成字符串
+9. strings.Atoi(str string)(int, error)：把一个字符串转成整数
+练习6：写一个函数分别演示Itoa、Atoi的用法
+
+
+时间和日期类型
+1. time包
+2. time.Time类型 用来表示时间
+3. 获取当前时间 not := time.Now()
+4. time.Now().Day()，time.Now().Minute()，time.Now().Month()，time.Now().Year()
+5. 格式化，fmt.Printf(“%02d/%02d%02d %02d:%02d:%02d”, now.Year()…)
+6. time.Duration用来表示纳秒
+7. 一些常量：
+const(
+Nanosecond Duration=1
+Microsecond = 1000 * Nanosecond
+Millisecond = 1000 * Microsecond
+Second = 1000 * Millisecond
+Minute = 60 * Second
+Hour = 60 * Minute
+)
+8. 格式化
+now := time.Now()
+fmt.Println(now.Format("02/1/2006 15:05"))
+fmt.Println(now.Format("2006/1/02 15:04"))
+fmt.Println(now.Format("2006/1/02"))
+练习6：写一个程序，获取当前时间，并格式化成 2017/06/15 08:05:00形式
+练习7：写一个程序，统计一段代码的执行耗时，单位精确到微秒。
+
+
+
+指针类型
+1. 普通类型，变量存的就是值，也叫值类型
+2. 获取变量的地址，用&，比如： var a int, 获取a的地址：&a
+3. 指针类型，变量存的是一个地址，这个地址存的才是值
+4. 获取指针类型所指向的值，使用：*，比如：var *p int, 使用*p获取p指向的值
+var a int = 5
+var p *int = &a
+练习8：写一个程序，获取一个变量的地址，并打印到终端
+练习9：写一个函数，传入一个int类型的指针，并在函数中修改所指向的值。
+在main函数中调用这个函数，并把修改前后的值打印到终端，观察结果
+
+
+流程控制
+if/else分支判断
+if condition1 {}
+if condition1 {}
+else{}
+
+if condition1 {}
+else if condition2 {}
+else {}
+
+package main
+import "fmt"
+func main() {
+	bool1 := true
+	if bool1 {
+	    fmt.Printf("the value is true\n")
+	} else {
+	    fmt.Printf("the value is false\n")
+	}
+}
+练习10：写一个程序，从终端读取输入，并转成整数，如果转成整数出错
+则输出 “can not convert to int”，并返回。否则输出该整数。
+
+switch case 语句
+switch var {
+	case var1:
+	case var2:
+	case var3:
+	default:
+}
+
+var i = 0
+switch i {
+case 0:
+case 1:
+      fmt.Println(“1”)
+case 2:
+fmt.Println(“2”)
+default:
+     fmt.Println(“def”)
+}
+
+var i = 0
+switch i {
+case 0:
+        fallthrough
+case 1:
+      fmt.Println(“1”)
+case 2:
+fmt.Println(“2”)
+default:
+     fmt.Println(“def”)
+}
+
+var i = 0
+switch i {
+case 0, 1:
+      fmt.Println(“1”)
+case 2:
+fmt.Println(“2”)
+default:
+     fmt.Println(“def”)
+}
+
+
+var i = 0
+switch {
+condition1:
+      fmt.Println(“i > 0 and i < 10”)
+condition2:
+fmt.Println(“i > 10 and i < 20”)
+default:
+     fmt.Println(“def”)
+}
+
+var i = 0
+switch {
+case i > 0 && i < 10:
+      fmt.Println(“i > 0 and i < 10”)
+case i > 10 && i < 20:
+fmt.Println(“i > 10 and i < 20”)
+default:
+     fmt.Println(“def”)
+}
+
+练习11：猜数字，写一个程序，随机生成一个0到100的整数n，然后用户在终端
+输入数字，如果和n相等，则提示用户猜对了。如果不相等，则提示用户，大于
+或小于n。
+
+for语句
+for 初始化语句;条件判断;变量修改 {}
+for i := 0; i < 100; i ++ {
+	fmt.Printf("i=%d\n", i)
+}
+注意for(i := 0; i < 100; i ++)
+练习12：写一个程序，在终端打印如下图形
+
+for  条件 {
+}
+
+for i > 0 {
+      fmt.Println(“i > 0”)
+}
+
+for true {
+      fmt.Println(“i > 0”)
+}
+
+for {
+      fmt.Println(“i > 0”)
+}
+
+
+str := “hello world,中国”
+for i, v := range str {
+     fmt.Printf(“index[%d] val[%c] len[%d]\n”, i, v, len([]byte(v)))
+}
+
+
+str := “hello world,中国”
+for i, v := range str {
+       if i > 2 {
+             continue
+       }
+  if (i > 3) {
+         break  }
+     fmt.Printf(“index[%d] val[%c] len[%d]\n”, i, v, len([]byte(v)))
+}
+
+goto 和label 语句 
+package main
+import "fmt"
+func main() {
+LABEL1:
+	for i := 0; i <= 5; i++ {
+		for j := 0; j <= 5; j++ {
+			if j == 4 {
+				continue LABEL1
+			}
+			fmt.Printf("i is: %d, and j is: %d\n", i, j)
+		}
+	}
+}
+
+
+package main
+
+func main() {
+	i := 0
+HERE:
+	print(i)
+	i++
+	if i == 5 {
+		return
+	}
+	goto HERE
+}
+
+i := 0
+for {
+      if i >= 3 { 
+   break 
+   }
+
+      fmt.Println(“”, i)
+      i++;
+}
