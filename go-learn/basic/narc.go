@@ -15,5 +15,13 @@ func isSXH(n int) bool {
 }
 
 func main() {
-	
+	// var n int
+	// var m int
+	// fmt.Scanf("%d,%d", &n, &m) // 输入中间为逗号
+
+	for i := 100; i < 200; i ++ {
+		if isSXH(i) == true {
+			fmt.Println(i, "is 水仙花数")
+		}
+	}
 }
