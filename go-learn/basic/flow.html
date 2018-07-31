@@ -1,0 +1,173 @@
+流程控制
+if/else分支判断
+if condition1 {}
+if condition1 {}
+else{}
+
+if condition1 {}
+else if condition2 {}
+else {}
+
+package main
+import "fmt"
+func main() {
+	bool1 := true
+	if bool1 {
+	    fmt.Printf("the value is true\n")
+	} else {
+	    fmt.Printf("the value is false\n")
+	}
+}
+练习10：写一个程序，从终端读取输入，并转成整数，如果转成整数出错
+则输出 “can not convert to int”，并返回。否则输出该整数。
+
+switch case 语句
+switch var {
+	case var1:
+	case var2:
+	case var3:
+	default:
+}
+
+var i = 0
+switch i {
+case 0:
+case 1:
+      fmt.Println(“1”)
+case 2:
+fmt.Println(“2”)
+default:
+     fmt.Println(“def”)
+}
+
+var i = 0
+switch i {
+case 0:
+        fallthrough
+case 1:
+      fmt.Println(“1”)
+case 2:
+fmt.Println(“2”)
+default:
+     fmt.Println(“def”)
+}
+
+var i = 0
+switch i {
+case 0, 1:
+      fmt.Println(“1”)
+case 2:
+fmt.Println(“2”)
+default:
+     fmt.Println(“def”)
+}
+
+
+var i = 0
+switch {
+condition1:
+      fmt.Println(“i > 0 and i < 10”)
+condition2:
+fmt.Println(“i > 10 and i < 20”)
+default:
+     fmt.Println(“def”)
+}
+
+var i = 0
+switch {
+case i > 0 && i < 10:
+      fmt.Println(“i > 0 and i < 10”)
+case i > 10 && i < 20:
+fmt.Println(“i > 10 and i < 20”)
+default:
+     fmt.Println(“def”)
+}
+
+练习11：猜数字，写一个程序，随机生成一个0到100的整数n，然后用户在终端
+输入数字，如果和n相等，则提示用户猜对了。如果不相等，则提示用户，大于
+或小于n。
+
+for语句
+for 初始化语句;条件判断;变量修改 {}
+for i := 0; i < 100; i ++ {
+	fmt.Printf("i=%d\n", i)
+}
+注意for(i := 0; i < 100; i ++)
+练习12：写一个程序，在终端打印如下图形
+
+for  条件 {
+}
+
+for i > 0 {
+      fmt.Println(“i > 0”)
+}
+
+for true {
+      fmt.Println(“i > 0”)
+}
+
+for {
+      fmt.Println(“i > 0”)
+}
+
+
+str := “hello world,中国”
+for i, v := range str {
+     fmt.Printf(“index[%d] val[%c] len[%d]\n”, i, v, len([]byte(v)))
+}
+
+
+str := “hello world,中国”
+for i, v := range str {
+       if i > 2 {
+             continue
+       }
+  if (i > 3) {
+         break  }
+     fmt.Printf(“index[%d] val[%c] len[%d]\n”, i, v, len([]byte(v)))
+}
+
+goto 和label 语句 
+package main
+import "fmt"
+func main() {
+LABEL1:
+	for i := 0; i <= 5; i++ {
+		for j := 0; j <= 5; j++ {
+			if j == 4 {
+				continue LABEL1
+			}
+			fmt.Printf("i is: %d, and j is: %d\n", i, j)
+		}
+	}
+}
+
+
+package main
+
+func main() {
+	i := 0
+HERE:
+	print(i)
+	i++
+	if i == 5 {
+		return
+	}
+	goto HERE
+}
+
+i := 0
+for {
+      if i >= 3 { 
+   break 
+   }
+
+      fmt.Println(“”, i)
+      i++;
+}
+
+for i := 0; i<7 ; i++ {       if i%2 == 0 { 
+             continue 
+        } 
+         fmt.Println(i)
+} 
