@@ -8,7 +8,7 @@ const b string = "welcome to "
 const b = "welcome"
 const Pi = 3.1414926
 const a = 9/3
-const c = getValue()
+const c = getValue() // 非法
 
 4. 比较优雅的写法
 const(a=0 b=1 c=2)
@@ -45,3 +45,13 @@ var.go
 值类型 基本数据类型int float bool string以及数组和struct
 引用类型 指针 slice map clean 等都是引用类型
 
+quote.go
+change.go
+
+变量的作用域
+
+在函数内部声明的变量叫做局部变量 生命周期仅限于函数内部
+在函数外部声明的变量叫做全部变量 生命周期作用于整个包 如果是大写的 则作用于整个程序
+
+g.go
+grope.go
